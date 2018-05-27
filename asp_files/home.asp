@@ -33,15 +33,18 @@
 <br><br>
 <div align='center'>
 <table class='id' width='70%'>
-	<tr>
-		<td class='id' width='35%' align='left' valign='center' NOWRAP>
+    <tr>
+		<td class='id' colspan="2" width='100%' align='left' valign='center' NOWRAP>
 		<!-- this next line adds the user name to the 'hello' -->
 			<% Response.Write ("<h2>Hello, " & Session("UserName") & "!</h2>") %>
-		</td>
-		<td class='id' width='15%' align='center' valign='center'>
+		</td>    </tr>
+	<tr>
+
+		<td class='id' width='50%' align='center' valign='center'>
 			<font class='h4'>Enter a new car</font><br>
 			<input type='button' value='New Car' ONCLICK='AddCar()'>
 		</td>
+
 		<td class='id' width='50%' align='center'>
 			<font class='h4'>Select a location to filter the inventory list.</font><br>
 			<select id="cboFilter" name='cboFilter' ONCHANGE='RefreshHome()' size=1>
@@ -89,7 +92,7 @@
 		</td>
 	</tr>
 </table>
-</form>
+
 </div><br><br>
 <div align='center'>
 
