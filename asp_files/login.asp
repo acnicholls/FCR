@@ -23,8 +23,7 @@
 
 <% else %>
 
-<h2>Please enter your user name and password</h2>
-
+<h2>Please enter your user name (oktork) and password (master)</h2>
 
 User Name : <input type="text" name="txtUserName" length=25><br>
 Password : <input type="password" name="txtPassword" length=25><br><br><br>

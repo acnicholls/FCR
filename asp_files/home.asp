@@ -95,7 +95,9 @@
 
 </div><br><br>
 <div align='center'>
-
+<div align='center'>
+Click on the car number to rent or return the car.
+</div>
 <table class='inv' bgcolor=#00ced1>
 	<caption align='center' valign='center'><B><big><font>Inventory</font></big></b></caption>
 	<tr>
