@@ -7,6 +7,7 @@
    With gobjConn
         .Provider = "Microsoft.jet.oledb.4.0; persist security info=false;"
         .ConnectionString = "Data Source=c:\inetpub\wwwroot\fcr\App_Data\database\carrent.mdb"
+		.Mode = 3
         .Open
    End With
   

@@ -42,7 +42,7 @@ if request("cboLocation") > "" AND _
 				end if
 				intDoors=cint(request("cboDoors"))
 				intYear=cint(request("txtYear"))
-				numKM=cint(request("txtKM"))
+				numKM=clng(request("txtKM"))
 				strSQL = "INSERT INTO tblCar (fldCarID,fldManuf,fldMake,fldType,fldYear,fldColor,fldAuto,fldDoors,fldAC,fldRate,fldKM,fldLocation) VALUES('" & intCarID & "','" & strManu & "','" & strMake & "','" & strType & "'," & intYear & ",'" & strColour & "','" & blnAuto & "'," & intDoors & ",'" & blnAC & "'," & intRate & "," & numKM & ",'" & strLocation & "')"
 				set objCmd = server.CreateObject("ADODB.COMMAND")
 				objCmd.ActiveConnection = gobjConn
