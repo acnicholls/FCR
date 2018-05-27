@@ -1,0 +1,188 @@
+BODY
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12pt;
+    COLOR: black;
+    FONT-FAMILY: Trebuchet MS;
+    BACKGROUND-COLOR: #5171ec;
+    align: Center
+}
+H1
+{
+    COLOR: green
+}
+H2
+{
+    COLOR: yellow
+}
+TABLE
+{
+    BORDER-RIGHT: black thick solid;
+    PADDING-RIGHT: 0px;
+    BORDER-TOP: black thick solid;
+    PADDING-LEFT: 0px;
+    FONT-SIZE: 10pt;
+    PADDING-BOTTOM: 0px;
+    MARGIN: 0px;
+    TEXT-TRANSFORM: uppercase;
+    BORDER-LEFT: black thick solid;
+    COLOR: black;
+    PADDING-TOP: 0px;
+    BORDER-BOTTOM: black thick solid;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: #00ced1;
+    FONT-VARIANT: small-caps
+}
+TD
+{
+    BORDER-RIGHT: gray 1px solid;
+    PADDING-RIGHT: 5px;
+    BORDER-TOP: gray 1px solid;
+    PADDING-LEFT: 0px;
+    FONT-SIZE: 10pt;
+    PADDING-BOTTOM: 0px;
+    MARGIN: 0px;
+    TEXT-TRANSFORM: uppercase;
+    BORDER-LEFT: gray 1px solid;
+    COLOR: black;
+    PADDING-TOP: 0px;
+    BORDER-BOTTOM: gray 1px solid;
+    FONT-FAMILY: Arial;
+    FONT-VARIANT: small-caps
+}
+TH
+{
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11pt;
+    PADDING-BOTTOM: 2px;
+    MARGIN: 0px;
+    TEXT-TRANSFORM: uppercase;
+    COLOR: black;
+    PADDING-TOP: 2px;
+    FONT-FAMILY: Arial;
+    FONT-VARIANT: normal
+}
+H4
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 11pt;
+    TEXT-TRANSFORM: uppercase;
+    COLOR: maroon;
+    FONT-FAMILY: Arial;
+    FONT-VARIANT: small-caps
+}
+FONT
+{
+    FONT-SIZE: 12pt;
+    TEXT-TRANSFORM: uppercase;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    FONT-VARIANT: small-caps
+}
+.id
+{
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: larger;
+    BORDER-LEFT: medium none;
+    COLOR: black;
+    BORDER-BOTTOM: medium none;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: transparent
+}
+.lot
+{
+    BORDER-RIGHT: thin outset;
+    BORDER-TOP: thin outset;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 10pt;
+    TEXT-TRANSFORM: uppercase;
+    BORDER-LEFT: thin outset;
+    COLOR: black;
+    BORDER-BOTTOM: thin outset;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: #40e0d0;
+    FONT-VARIANT: small-caps
+}
+.rented
+{
+    BORDER-RIGHT: thin inset;
+    BORDER-TOP: thin inset;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 10pt;
+    TEXT-TRANSFORM: uppercase;
+    BORDER-LEFT: thin inset;
+    COLOR: black;
+    BORDER-BOTTOM: thin inset;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: #f0f8ff;
+    FONT-VARIANT: small-caps
+}
+A
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 10pt;
+    TEXT-TRANSFORM: uppercase;
+    FONT-FAMILY: Arial;
+    FONT-VARIANT: small-caps
+}
+.data
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 12pt;
+    TEXT-TRANSFORM: uppercase;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: #b0e0e6;
+    FONT-VARIANT: small-caps
+}
+.info
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 12pt;
+    TEXT-TRANSFORM: uppercase;
+    COLOR: white;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: #5171ec;
+    FONT-VARIANT: normal
+}
+.header
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 20pt;
+    TEXT-TRANSFORM: uppercase;
+    COLOR: black;
+    FONT-FAMILY: 'Arial Black';
+    BACKGROUND-COLOR: transparent;
+    FONT-VARIANT: small-caps
+}
+.rentreturn
+{
+    BORDER-RIGHT: black double;
+    BORDER-TOP: black double;
+    BORDER-LEFT: black double;
+    BORDER-BOTTOM: black double
+}
+.insert
+{
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    FONT-SIZE: 10pt;
+    TEXT-TRANSFORM: uppercase;
+    BORDER-LEFT: medium none;
+    COLOR: black;
+    BORDER-BOTTOM: medium none;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: transparent;
+    FONT-VARIANT: small-caps;
+}
+.small
+{
+    FONT-SIZE: 6pt;
+    TEXT-TRANSFORM: uppercase;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    FONT-VARIANT: small-caps
+}

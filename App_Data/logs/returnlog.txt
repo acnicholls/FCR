@@ -1,0 +1,7 @@
+Car  1002
+Client  12546876
+KM on Return   56598
+Date Returned   12/16/2003
+Returned to Vancouver
+Operator  oktork
+***********************************

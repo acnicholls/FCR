@@ -1,0 +1,7 @@
+Car  1002
+Client  12546876
+KM on Rent   56412
+Date Rented   12/16/2003
+Rented from Victoria
+Operator  oktork
+***********************************
