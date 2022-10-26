@@ -154,7 +154,7 @@ Click on the car number to rent or return the car.
 					end if
 					Response.Write ("</td>")
 				case 6,8
-					response.write ("<td align='center'><input type='checkbox'")
+					response.write ("<td align='center'><input disabled type='checkbox'")
 					if cbool(gobjRS.Fields(intfields)) = true then
 						Response.Write(" CHECKED")
 					end if
