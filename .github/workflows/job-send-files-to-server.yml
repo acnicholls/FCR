@@ -1,0 +1,23 @@
+name: send-files-to-server
+
+on:
+  workflow_call:
+
+jobs:
+  send-files-to-server:
+    if: ${{ success() }}
+    runs-on: self-hosted
+    permissions:
+      contents: read
+    steps:
+      # tag the nuget version
+      - name: Copy the files to the Web Server
+        id: copy-files-to-server
+        shell: powershell
+        run: |
+          robocopy ./App_Data/database/* "${{ secrets.SERVER_NETWORK_PATH }}\App_Data\database" /XO /E
+          cp ./App_Data/inc_files/* "${{ secrets.SERVER_NETWORK_PATH }}\App_Data\inc_files" -Recurse -Force
+          cp ./asp_files/* "${{ secrets.SERVER_NETWORK_PATH }}\asp_files" -Recurse -Force
+          cp ./images/* "${{ secrets.SERVER_NETWORK_PATH }}\images" -Recurse -Force
+          cp ./styles/* "${{ secrets.SERVER_NETWORK_PATH }}\styles" -Recurse -Force
+          cp ./Default.asp "${{ secrets.SERVER_NETWORK_PATH }}\Default.asp" -Force
