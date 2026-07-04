@@ -23,7 +23,7 @@ jobs:
           robocopy "${{ github.workspace }}\asp_files" "${{ secrets.SERVER_NETWORK_PATH }}\asp_files" /MIR
           robocopy "${{ github.workspace }}\images" "${{ secrets.SERVER_NETWORK_PATH }}\images" /MIR
           robocopy "${{ github.workspace }}\styles" "${{ secrets.SERVER_NETWORK_PATH }}\styles" /MIR
-          robocopy "${{ github.workspace }}\Default.asp" "${{ secrets.SERVER_NETWORK_PATH }}\Default.asp"
+          robocopy "${{ github.workspace }}" "${{ secrets.SERVER_NETWORK_PATH }}" "Default.asp"
 
       # just need to update the web.config file to force the server to reload the application
       - name: reboot the web server
