@@ -22,49 +22,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  prepare-variables:
+  deploy-application:
     runs-on: ["self-hosted", "Windows", "X64", "fcr", "deploy"]
+    steps:
+      - name: prepare environment
+        id: prepare-environment
+        uses: ./.github/workflows/job-prepare-environment.yml
 
-  prepare-environment:
-    needs: prepare-variables
-    uses: ./.github/workflows/job-prepare-environment.yml
+      - name: get-version
+        id: get-version
+        uses: ./.github/workflows/job-get-version.yml
+        with:
+          build-type: RELEASE
+          tag-version-prefix: ""
+          version-suffix: ""
 
-  get-version:
-    needs: [prepare-variables, prepare-environment]
-    uses: ./.github/workflows/job-get-version.yml
-    with:
-      build-type: RELEASE
-      tag-version-prefix: ""
-      version-suffix: ""
+      - name: send-files-to-server
+        id: send-files-to-server
+        uses: ./.github/workflows/job-send-files-to-server.yml
 
-  send-files-to-server:
-    needs: [prepare-variables, prepare-environment, get-version]
-    uses: ./.github/workflows/job-send-files-to-server.yml
+      - name: tag-repo
+        id: tag-repo
+        uses: ./.github/workflows/job-tag-repo.yml
+        with:
+          tag-string: v${{ steps.get-version.outputs.NEXT_VERSION_NUMBER }}
+          build-type: RELEASE
 
-  tag-repo:
-    uses: ./.github/workflows/job-tag-repo.yml
-    needs:
-      [
-        prepare-variables,
-        prepare-environment,
-        get-version,
-        send-files-to-server,
-      ]
-    with:
-      tag-string: v${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}
-      build-type: RELEASE
-
-  create-release:
-    uses: ./.github/workflows/job-create-private-release.yml
-    needs:
-      [
-        prepare-variables,
-        prepare-environment,
-        get-version,
-        send-files-to-server,
-        tag-repo,
-      ]
-    with:
-      tag-string: v${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}
-      build-type: RELEASE
-      version-string: ${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}
+      - name: create-release
+        id: create-release
+        uses: ./.github/workflows/job-create-private-release.yml
+        with:
+          tag-string: v${{ steps.get-version.outputs.NEXT_VERSION_NUMBER }}
+          build-type: RELEASE
+          version-string: ${{ steps.get-version.outputs.NEXT_VERSION_NUMBER }}
