@@ -47,6 +47,8 @@ jobs:
   send-files-to-server:
     needs: [prepare-variables, prepare-environment, get-version]
     uses: ./.github/workflows/job-send-files-to-server.yml
+    secrets:
+      SERVER_NETWORK_PATH: ${{ secrets.SERVER_NETWORK_PATH }}
 
   tag-repo:
     needs: [prepare-variables, get-version, send-files-to-server]

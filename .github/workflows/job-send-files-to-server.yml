@@ -2,6 +2,9 @@ name: send-files-to-server
 
 on:
   workflow_call:
+    secrets:
+      SERVER_NETWORK_PATH:
+        required: true
 
 jobs:
   send-files-to-server:
