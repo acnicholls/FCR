@@ -45,7 +45,7 @@ jobs:
       version-suffix: ""
 
   send-files-to-server:
-    needs: get-version
+    needs: [prepare-variables, prepare-environment, get-version]
     uses: ./.github/workflows/job-send-files-to-server.yml
 
   tag-repo:
@@ -56,9 +56,9 @@ jobs:
       build-type: ${{ needs.prepare-variables.outputs.build-type }}
 
   create-release:
-    needs: [get-version, tag-repo]
+    needs: [prepare-variables, get-version, tag-repo]
     uses: ./.github/workflows/job-create-private-release.yml
     with:
       tag-string: v${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}
-      build-type: RELEASE
+      build-type: ${{ needs.prepare-variables.outputs.build-type }}
       version-string: ${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}
