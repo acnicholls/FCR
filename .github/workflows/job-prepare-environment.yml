@@ -1,0 +1,29 @@
+name: prepare-environment
+
+on:
+  workflow_call:
+
+jobs:
+  prepare-environment:
+    runs-on: self-hosted
+    steps:
+      - name: Init the Repo
+        id: init-the-repo
+        shell: cmd
+        run: |
+          git config --global init.defaultBranch master
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git init
+
+      # get the latest code from the repo
+      - name: Checkout Code
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # display environment variables, for audit purposes
+      - name: Check Environment
+        shell: cmd
+        run: |
+          set

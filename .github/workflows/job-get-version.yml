@@ -1,0 +1,62 @@
+name: get-version
+
+on:
+  workflow_call:
+    inputs:
+      build-type:
+        required: true
+        type: string
+      tag-version-prefix:
+        required: true
+        type: string
+      version-suffix:
+        required: false
+        type: string
+    outputs:
+      NEXT_VERSION_NUMBER:
+        description: the number part of the version
+        value: ${{ jobs.get-version.outputs.NEXT_VERSION_NUMBER }}
+      NEXT_VERSION_STRING:
+        description: the version, with possible suffix, in string format
+        value: ${{ jobs.get-version.outputs.NEXT_VERSION_STRING }}
+jobs:
+  get-version:
+    runs-on: self-hosted
+    outputs:
+      NEXT_VERSION_NUMBER: ${{ steps.get-semver-outputs.outputs.NEXT_VERSION_NUMBER }}
+      NEXT_VERSION_STRING: ${{ steps.get-semver-outputs.outputs.NEXT_VERSION_STRING }}
+    steps:
+      # get the next tag version for this repo
+      - name: Get Next Version
+        id: semver
+        uses: ietf-tools/semver-action@v1
+        with:
+          token: ${{ github.token }}
+          branch: ${{ github.ref }}
+          prefix: ${{ inputs.tag-version-prefix }}
+          patchAll: true
+          skipInvalidTags: true
+          noVersionBumpBehavior: patch
+          maxTagsToFetch: 100
+          fallbackTag: v0.0.0
+          noNewCommitBehavior: current
+
+      - name: get SemVer output values
+        id: get-semver-outputs
+        shell: powershell
+        run: |
+          echo "Current: ${{ steps.semver.outputs.current }}"
+          echo "Next: ${{ steps.semver.outputs.next }}"
+          echo "NextStrict: ${{ steps.semver.outputs.nextStrict }}"
+          echo "NextMajor: ${{ steps.semver.outputs.nextMajor }}"
+          echo "Bump: ${{ steps.semver.outputs.bump }}"
+          $next_version='${{ steps.semver.outputs.nextStrict }}'
+          echo $next_version
+          $next_version_number=$next_version -replace "${{ inputs.tag-version-prefix }}", ""
+          echo $next_version_number
+          echo "NEXT_VERSION_NUMBER=$next_version_number" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          $version_suffix=&{If('${{ inputs.version-suffix }}' -ne '') {'-${{ inputs.version-suffix }}'} Else {''}}
+          echo $version_suffix
+          $next_version_string=$next_version_number + $version_suffix
+          echo $next_version_string
+          echo "NEXT_VERSION_STRING=$next_version_string" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append

@@ -1,0 +1,43 @@
+name: create-release
+
+on:
+  workflow_call:
+    inputs:
+      tag-string:
+        required: true
+        type: string
+      version-string:
+        required: true
+        type: string
+      build-type:
+        required: true
+        type: string
+
+jobs:
+  create-release:
+    if: ${{ success() }}
+    runs-on: self-hosted
+    permissions:
+      contents: write
+    steps:
+      - name: Name Release
+        id: name-release
+        shell: powershell
+        run: |
+          if ('${{ inputs.build-type }}' -eq 'Debug') {
+            echo "::set-output name=release-name::FCR Stage"
+          } else {
+            echo "::set-output name=release-name::FCR Release"
+          }
+
+      # generate release notes
+      - name: Create Release
+        id: create-release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ inputs.tag-string }}
+          generate_release_notes: true
+          name: ${{ steps.name-release.outputs.release-name }} v${{ inputs.version-string }}
+          draft: false
+          prerelease: ${{ inputs.build-type == 'Debug' }}
+          make_latest: ${{ inputs.build-type != 'Debug' }}

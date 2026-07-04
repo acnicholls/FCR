@@ -1,0 +1,70 @@
+# this workflow deploys this repositories code to a server for demo and display.
+name: deploy-workflow
+run-name: Deploy RELEASE files for ${{ github.event_name }} triggered by ${{ github.triggering_actor }}
+concurrency:
+  group: release-deploy-files
+
+permissions:
+  contents: read
+  packages: read
+  actions: read
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - README.md
+      - LICENSE.md
+      - CHANGELOG.md # Should never be edited anyway
+      - .git*
+      - docs/**
+  workflow_dispatch:
+
+jobs:
+  prepare-variables:
+    runs-on: self-hosted
+
+  prepare-environment:
+    needs: prepare-variables
+    uses: ./.github/workflows/job-prepare-environment.yml
+
+  get-version:
+    needs: [prepare-variables, prepare-environment]
+    uses: ./.github/workflows/job-get-version.yml
+    with:
+      build-type: RELEASE
+      tag-version-prefix: ""
+      version-suffix: ""
+
+  send-files-to-server:
+    needs: [prepare-variables, prepare-environment, get-version]
+    uses: ./.github/workflows/job-send-files-to-server.yml
+
+  tag-repo:
+    uses: ./.github/workflows/job-tag-repo.yml
+    needs:
+      [
+        prepare-variables,
+        prepare-environment,
+        get-version,
+        send-files-to-server,
+      ]
+    with:
+      tag-string: v${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}
+      build-type: RELEASE
+
+  create-release:
+    uses: ./.github/workflows/job-create-private-release.yml
+    needs:
+      [
+        prepare-variables,
+        prepare-environment,
+        get-version,
+        send-files-to-server,
+        tag-repo,
+      ]
+    with:
+      tag-string: v${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}
+      build-type: RELEASE
+      version-string: ${{ needs.get-version.outputs.NEXT_VERSION_NUMBER }}

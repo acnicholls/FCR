@@ -1,0 +1,26 @@
+name: tag-repo
+
+on:
+  workflow_call:
+    inputs:
+      tag-string:
+        required: true
+        type: string
+      build-type:
+        required: true
+        type: string
+
+jobs:
+  tag-repo:
+    if: ${{ success() }}
+    runs-on: self-hosted
+    permissions:
+      contents: write
+    steps:
+      # tag the nuget version
+      - name: Tag the Repo
+        id: tag-the-repo
+        shell: powershell
+        run: |
+          git tag -a -m "tagging the next ${{ inputs.build-type }} version" ${{ inputs.tag-string }} ${{ github.sha }}
+          git push https://${{ github.actor }}:${{ github.token }}@github.com/acnicholls/FCR.git --follow-tags
