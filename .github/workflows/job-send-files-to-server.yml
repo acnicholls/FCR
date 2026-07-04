@@ -15,12 +15,12 @@ jobs:
         id: copy-files-to-server
         shell: powershell
         run: |
-          robocopy ${{ github.workspace }}\App_Data\database\* "${{ secrets.SERVER_NETWORK_PATH }}\App_Data\database" /E /XN /XO /XC
-          cp ${{ github.workspace }}\App_Data\inc_files\* "${{ secrets.SERVER_NETWORK_PATH }}\App_Data\inc_files" -Recurse -Force
-          cp ${{ github.workspace }}\asp_files\* "${{ secrets.SERVER_NETWORK_PATH }}\asp_files" -Recurse -Force
-          cp ${{ github.workspace }}\images\* "${{ secrets.SERVER_NETWORK_PATH }}\images" -Recurse -Force
-          cp ${{ github.workspace }}\styles\* "${{ secrets.SERVER_NETWORK_PATH }}\styles" -Recurse -Force
-          cp ${{ github.workspace }}\Default.asp "${{ secrets.SERVER_NETWORK_PATH }}\Default.asp" -Force
+          robocopy "${{ github.workspace }}\App_Data\database\*" "${{ secrets.SERVER_NETWORK_PATH }}\App_Data\database" /E /XN /XO /XC
+          cp "${{ github.workspace }}\App_Data\inc_files\*" "${{ secrets.SERVER_NETWORK_PATH }}\App_Data\inc_files" -Recurse -Force
+          cp "${{ github.workspace }}\asp_files\*" "${{ secrets.SERVER_NETWORK_PATH }}\asp_files" -Recurse -Force
+          cp "${{ github.workspace }}\images\*" "${{ secrets.SERVER_NETWORK_PATH }}\images" -Recurse -Force
+          cp "${{ github.workspace }}\styles\*" "${{ secrets.SERVER_NETWORK_PATH }}\styles" -Recurse -Force
+          cp "${{ github.workspace }}\Default.asp" "${{ secrets.SERVER_NETWORK_PATH }}\Default.asp" -Force
 
       # just need to update the web.config file to force the server to reload the application
       - name: reboot the web server
