@@ -23,7 +23,7 @@ on:
 
 jobs:
   prepare-variables:
-    runs-on: self-hosted
+    runs-on: ["self-hosted", "Windows", "X64", "fcr", "deploy"]
 
   prepare-environment:
     needs: prepare-variables
