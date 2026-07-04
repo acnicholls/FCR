@@ -58,30 +58,42 @@
 				'location, as per the user's request
 				case "All", ""
 					Response.Write ("<option value='home.asp' SELECTED>All")
+					Response.Write ("<option value='home.asp?DesiredLocation=Rented'>Rented")
 					Response.Write ("<option value='home.asp?DesiredLocation=Victoria'>Victoria")
 					Response.Write ("<option value='home.asp?DesiredLocation=Vancouver'>Vancouver")
 					Response.Write ("<option value='home.asp?DesiredLocation=Nanaimo'>Nanaimo")
 					Response.Write ("<option value='home.asp?DesiredLocation=Hope'>Hope")
+				case "Rented"
+					Response.Write ("<option value='home.asp'>All")
+					Response.Write ("<option value='home.asp?DesiredLocation=Rented' SELECTED>Rented")
+					Response.Write ("<option value='home.asp?DesiredLocation=Victoria'>Victoria")
+					Response.Write ("<option value='home.asp?DesiredLocation=Vancouver'>Vancouver")
+					Response.Write ("<option value='home.asp?DesiredLocation=Nanaimo'>Nanaimo")
+					Response.Write ("<option value='home.asp?DesiredLocation=Hope'>Hope")						
 				case "Victoria"
 					Response.Write ("<option value='home.asp'>All")
+					Response.Write ("<option value='home.asp?DesiredLocation=Rented'>Rented")
 					Response.Write ("<option value='home.asp?DesiredLocation=Victoria' SELECTED>Victoria")
 					Response.Write ("<option value='home.asp?DesiredLocation=Vancouver'>Vancouver")
 					Response.Write ("<option value='home.asp?DesiredLocation=Nanaimo'>Nanaimo")
 					Response.Write ("<option value='home.asp?DesiredLocation=Hope'>Hope")
 				case "Vancouver"
 					Response.Write ("<option value='home.asp'>All")
+					Response.Write ("<option value='home.asp?DesiredLocation=Rented'>Rented")
 					Response.Write ("<option value='home.asp?DesiredLocation=Victoria'>Victoria")
 					Response.Write ("<option value='home.asp?DesiredLocation=Vancouver' SELECTED>Vancouver")
 					Response.Write ("<option value='home.asp?DesiredLocation=Nanaimo'>Nanaimo")
 					Response.Write ("<option value='home.asp?DesiredLocation=Hope'>Hope")
 				case "Nanaimo"
 					Response.Write ("<option value='home.asp'>All")
+					Response.Write ("<option value='home.asp?DesiredLocation=Rented'>Rented")
 					Response.Write ("<option value='home.asp?DesiredLocation=Victoria'>Victoria")
 					Response.Write ("<option value='home.asp?DesiredLocation=Vancouver'>Vancouver")
 					Response.Write ("<option value='home.asp?DesiredLocation=Nanaimo' SELECTED>Nanaimo")
 					Response.Write ("<option value='home.asp?DesiredLocation=Hope'>Hope")
 				case "Hope"
 					Response.Write ("<option value='home.asp'>All")
+					Response.Write ("<option value='home.asp?DesiredLocation=Rented'>Rented")
 					Response.Write ("<option value='home.asp?DesiredLocation=Victoria'>Victoria")
 					Response.Write ("<option value='home.asp?DesiredLocation=Vancouver'>Vancouver")
 					Response.Write ("<option value='home.asp?DesiredLocation=Nanaimo'>Nanaimo")
@@ -122,6 +134,10 @@ Click on the car number to rent or return the car.
 		case "All", ""
 			set gobjRS = server.CreateObject("ADODB.Recordset")
 			strSQL = "SELECT * FROM tblCar"
+			call gobjRS.Open(strSQL, gobjConn, adOpenStatic, adLockReadOnly, adcmdText)
+		case "Rented"
+			set gobjRS = server.CreateObject("ADODB.Recordset")
+			strSQL = "Select * FROM tblCar WHERE fldClientID IS NOT NULL AND fldLocation IS NULL"
 			call gobjRS.Open(strSQL, gobjConn, adOpenStatic, adLockReadOnly, adcmdText)
 		case else
 			set gobjRS = server.CreateObject("ADODB.Recordset")
