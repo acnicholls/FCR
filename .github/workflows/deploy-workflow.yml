@@ -35,7 +35,7 @@ jobs:
     with:
       build-type: RELEASE
       tag-version-prefix: ""
-      version-suffix: "preview"
+      version-suffix: ""
 
   send-files-to-server:
     needs: [prepare-variables, prepare-environment, get-version]
