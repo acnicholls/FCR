@@ -9,5 +9,4 @@ The application is written in vbscript as active server pages that generate HTML
 the client side program now uses javascript in the browser to navigate.
 
 ## Working version
-you can find it working here : http://acnlop.dyndns.org/fcr
 you can find it working here : https://fcr.acnicholls.com
