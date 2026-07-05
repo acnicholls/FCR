@@ -30,7 +30,7 @@ jobs:
       - id: get-build-type
         shell: powershell
         run: |
-          echo "build-type=RELEASE" >> $env:GITHUB_OUTPUT
+          echo "BUILD_TYPE=RELEASE" >> $env:GITHUB_OUTPUT
 
   prepare-environment:
     needs: prepare-variables
