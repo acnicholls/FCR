@@ -24,11 +24,4 @@ jobs:
           robocopy "${{ github.workspace }}\images" "${{ secrets.SERVER_NETWORK_PATH }}\images" /MIR
           robocopy "${{ github.workspace }}\styles" "${{ secrets.SERVER_NETWORK_PATH }}\styles" /MIR
           robocopy "${{ github.workspace }}" "${{ secrets.SERVER_NETWORK_PATH }}" "Default.asp"
-
-      # just need to update the web.config file to force the server to reload the application
-      - name: reboot the web server
-        id: reboot-web-server
-        shell: powershell
-        run: |
-          $webConfigPath = "${{ secrets.SERVER_NETWORK_PATH }}\web.config"
-          (Get-Content $webConfigPath) | ForEach-Object { $_ -replace '(<add key="LastUpdated" value=")[^"]*(" />)', "`$1$(Get-Date -Format 'yyyy-MM-ddTHH:mm:ss')`$2" } | Set-Content $webConfigPath
+          if ($LASTEXITCODE -lt 8) { $global:LASTEXITCODE = 0 }
