@@ -18,6 +18,7 @@ on:
       - LICENSE.md
       - CHANGELOG.md # Should never be edited anyway
       - .git*
+      - .git*/**
       - docs/**
   workflow_dispatch:
 
